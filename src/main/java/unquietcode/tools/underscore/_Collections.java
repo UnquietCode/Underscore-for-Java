@@ -178,4 +178,114 @@ public class _Collections {
 
 		return retval;
 	}
+
+	// TODO 'where' (if it's possible at all)
+
+	public static <_Element> List<_Element> reject(
+		List<_Element> list,
+		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
+	){
+		List<_Element> iList = Collections.unmodifiableList(list);
+		List<_Element> retval = new ArrayList<_Element>();
+
+		for (int i=0; i < list.size(); ++i) {
+			_Element elem = list.get(i);
+			Boolean result = iterator.invoke(elem, i, iList);
+
+			if (result == null || !result) {
+				retval.add(elem);
+			}
+		}
+
+		return retval;
+	}
+
+	public static <_Key, _Value> Map<_Key, _Value> reject(
+		Map<_Key, _Value> map,
+		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
+	){
+		Map<_Key, _Value> iMap = Collections.unmodifiableMap(map);
+		Map<_Key, _Value> retval = new HashMap<_Key, _Value>();
+
+		for (Map.Entry<_Key, _Value> entry : map.entrySet()) {
+			Boolean result = iterator.invoke(entry.getValue(), entry.getKey(), iMap);
+
+			if (result == null || !result) {
+				retval.put(entry.getKey(), entry.getValue());
+			}
+		}
+
+		return retval;
+	}
+
+	public static <_Element> boolean all(
+		List<_Element> list,
+		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
+	){
+		List<_Element> iList = Collections.unmodifiableList(list);
+
+		for (int i=0; i < list.size(); ++i) {
+			_Element elem = list.get(i);
+			Boolean result = iterator.invoke(elem, i, iList);
+
+			if (result == null || !result) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	public static <_Key, _Value> boolean all(
+		Map<_Key, _Value> map,
+		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
+	){
+		Map<_Key, _Value> iMap = Collections.unmodifiableMap(map);
+
+		for (Map.Entry<_Key, _Value> entry : map.entrySet()) {
+			Boolean result = iterator.invoke(entry.getValue(), entry.getKey(), iMap);
+
+			if (result == null || !result) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	public static <_Element> boolean any(
+		List<_Element> list,
+		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
+	){
+		List<_Element> iList = Collections.unmodifiableList(list);
+
+		for (int i=0; i < list.size(); ++i) {
+			_Element elem = list.get(i);
+			Boolean result = iterator.invoke(elem, i, iList);
+
+			if (result != null && result) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public static <_Key, _Value> boolean any(
+		Map<_Key, _Value> map,
+		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
+	){
+		Map<_Key, _Value> iMap = Collections.unmodifiableMap(map);
+
+		for (Map.Entry<_Key, _Value> entry : map.entrySet()) {
+			Boolean result = iterator.invoke(entry.getValue(), entry.getKey(), iMap);
+
+			if (result != null && result) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }
+

@@ -117,7 +117,7 @@ public class EachTest {
 	public void listReduceRight() {
 		List<String> list = Arrays.asList("a", "b", "c");
 
-		String string = _.foldr(list, new _Iterators.withValue.memoized.forList<String, String>() {
+		String string = __.foldr(list, new _Iterators.withValue.memoized.forList<String, String>() {
 			public String invoke(String memo, String elem, Integer index, List<String> list) {
 				return memo + elem;
 			}
@@ -148,5 +148,17 @@ public class EachTest {
 		});
 
 		System.out.println(evens);
+	}
+
+	@Test
+	public void listReject() {
+		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
+		List<Integer> odds = _.reject(list, new _Iterators.listFilter<Integer>() {
+			public Boolean invoke(Integer elem, Integer index, List<Integer> list) {
+				return elem % 2 == 0;
+			}
+		});
+
+		System.out.println(odds);
 	}
 }

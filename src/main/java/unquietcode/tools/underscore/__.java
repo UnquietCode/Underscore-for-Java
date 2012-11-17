@@ -8,156 +8,132 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Underscore. Get it?
+ * Aliases for underscore methods.
  *
  * @author Ben Fagin
  * @version 11-16-2012
  */
-public class _ {
+public class __ {
 
 	//==o==o==o==o==o==o==| Each |==o==o==o==o==o==o==//
 
-	/**
-	 * Iterates over a list of elements, yielding each in turn to an iterator function.
-	 *
-	 * @param list
-	 * @param iterator
-	 * @param <_Element>
-	 */
-	public static <_Element> void each(
+	public static <_Element> void forEach(
 		List<_Element> list,
 		SimpleClosure3<_Element, Integer, List<_Element>> iterator
 	){
-		_Collections.each(list, iterator);
+		_.each(list, iterator);
 	}
 
-	public static <_Key, _Value> void each(
+	public static <_Key, _Value> void forEach(
 		Map<_Key, _Value> map,
 		SimpleClosure3<_Value, _Key, Map<_Key, _Value>> iterator
 	){
-		_Collections.each(map, iterator);
+		_.each(map, iterator);
 	}
 
 	//==o==o==o==o==o==o==| Map |==o==o==o==o==o==o==//
 
-	public static <_Input, _Output> List<_Output> map(
+	public static <_Input, _Output> List<_Output> collect(
 		List<_Input> list,
 		ValueClosure3<_Output, _Input, Integer, List<_Input>> iterator
 	){
-		return _Collections.map(list, iterator);
+		return _.map(list, iterator);
 	}
 
-	public static <_Key, _Value, _Output> List<_Output> map(
+	public static <_Key, _Value, _Output> List<_Output> collect(
 		Map<_Key, _Value> map,
 		ValueClosure3<_Output, _Value, _Key, Map<_Key, _Value>> iterator
 	){
-		return _Collections.map(map, iterator);
+		return _.map(map, iterator);
 	}
 
 	//==o==o==o==o==o==o==| Reduce |==o==o==o==o==o==o==//
 
-	public static <_Input, _Output> _Output reduce(
+	public static <_Input, _Output> _Output foldl(
 		List<_Input> list,
 		ValueClosure4<_Output, _Output, _Input, Integer, List<_Input>> iterator,
 		_Output memo
 	){
-		return _Collections.reduce(list, iterator, memo);
+		return _.reduce(list, iterator, memo);
 	}
 
-	public static <_Key, _Value, _Output> _Output reduce(
+	public static <_Key, _Value, _Output> _Output foldl(
 		Map<_Key, _Value> map,
 		ValueClosure4<_Output, _Output, _Value, _Key, Map<_Key, _Value>> iterator,
 		_Output memo
 	){
-		return _Collections.reduce(map, iterator, memo);
+		return _.reduce(map, iterator, memo);
 	}
 
-	public static <_Input, _Output> _Output reduceRight(
+	public static <_Input, _Output> _Output foldr(
 		List<_Input> list,
 		ValueClosure4<_Output, _Output, _Input, Integer, List<_Input>> iterator,
 		_Output memo
 	){
-		return _Collections.reduceRight(list, iterator, memo);
+		return _.reduceRight(list, iterator, memo);
 	}
 
 	//==o==o==o==o==o==o==| find |==o==o==o==o==o==o==//
 
-	public static <_Element> _Element find(
+	public static <_Element> _Element detect(
 		List<_Element> list,
 		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
 	){
-		return _Collections.find(list, iterator);
+		return _.find(list, iterator);
 	}
 
-	public static <_Key, _Value> _Value find(
+	public static <_Key, _Value> _Value  detect(
 		Map<_Key, _Value> map,
 		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
 	){
-		return _Collections.find(map, iterator);
+		return _.find(map, iterator);
 	}
 
 	//==o==o==o==o==o==o==| filter |==o==o==o==o==o==o==//
 
-	public static <_Element> List<_Element> filter(
+	public static <_Element> List<_Element> select(
 		List<_Element> list,
 		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
 	){
-		return _Collections.filter(list, iterator);
+		return _.filter(list, iterator);
 	}
 
-	public static <_Key, _Value> Map<_Key, _Value> filter(
+	public static <_Key, _Value> Map<_Key, _Value> select(
 		Map<_Key, _Value> map,
 		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
 	){
-		return _Collections.filter(map, iterator);
-	}
-
-	//==o==o==o==o==o==o==| reject |==o==o==o==o==o==o==//
-
-	public static <_Element> List<_Element> reject(
-		List<_Element> list,
-		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
-	){
-		return _Collections.reject(list, iterator);
-	}
-
-	public static <_Key, _Value> Map<_Key, _Value> reject(
-		Map<_Key, _Value> map,
-		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
-	){
-		return _Collections.reject(map, iterator);
+		return _.filter(map, iterator);
 	}
 
 	//==o==o==o==o==o==o==| all |==o==o==o==o==o==o==//
 
-
-	public static <_Element> boolean all(
+	public static <_Element> boolean every(
 		List<_Element> list,
 		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
 	){
-		return _Collections.all(list, iterator);
+		return _.all(list, iterator);
 	}
 
-	public static <_Key, _Value> boolean all(
+	public static <_Key, _Value> boolean every(
 		Map<_Key, _Value> map,
 		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
 	){
-		return _Collections.all(map, iterator);
+		return _.all(map, iterator);
 	}
 
 	//==o==o==o==o==o==o==| any |==o==o==o==o==o==o==//
 
-	public static <_Element> boolean any(
+	public static <_Element> boolean some(
 		List<_Element> list,
 		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
 	){
-		return _Collections.any(list, iterator);
+		return _.any(list, iterator);
 	}
 
-	public static <_Key, _Value> boolean any(
+	public static <_Key, _Value> boolean some(
 		Map<_Key, _Value> map,
 		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
 	){
-		return _Collections.any(map, iterator);
+		return _.any(map, iterator);
 	}
 }
