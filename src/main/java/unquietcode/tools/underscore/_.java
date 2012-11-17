@@ -148,10 +148,57 @@ public class _ {
 		return _Collections.find(list, iterator);
 	}
 
+	public static <_Key, _Value> _Value find(
+		Map<_Key, _Value> map,
+		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
+	){
+		return _Collections.find(map, iterator);
+	}
+
 	public static <_Element> _Element detect(
 		List<_Element> list,
 		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
 	){
 		return find(list, iterator);
 	}
+
+	public static <_Key, _Value> _Value  detect(
+		Map<_Key, _Value> map,
+		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
+	){
+		return find(map, iterator);
+	}
+
+	//==o==o==o==o==o==o==| filter |==o==o==o==o==o==o==//
+
+	public static <_Element> List<_Element> filter(
+		List<_Element> list,
+		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
+	){
+		return _Collections.filter(list, iterator);
+	}
+
+	public static <_Key, _Value> Map<_Key, _Value> filter(
+		Map<_Key, _Value> map,
+		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
+	){
+		return _Collections.filter(map, iterator);
+	}
+
+	public static <_Element> List<_Element> select(
+		List<_Element> list,
+		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
+	){
+		return filter(list, iterator);
+	}
+
+	public static <_Key, _Value> Map<_Key, _Value> select(
+		Map<_Key, _Value> map,
+		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
+	){
+		return filter(map, iterator);
+	}
+
+	//==o==o==o==o==o==o==| where |==o==o==o==o==o==o==//
+
 }

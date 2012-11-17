@@ -137,4 +137,16 @@ public class EachTest {
 
 		System.out.println(even);
 	}
+
+	@Test
+	public void listFilter() {
+		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
+		List<Integer> evens = _.filter(list, new _Iterators.listFilter<Integer>() {
+			public Boolean invoke(Integer elem, Integer index, List<Integer> list) {
+				return elem % 2 == 0;
+			}
+		});
+
+		System.out.println(evens);
+	}
 }

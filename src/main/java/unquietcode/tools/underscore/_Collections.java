@@ -2,10 +2,7 @@ package unquietcode.tools.underscore;
 
 import unquietcode.tools.underscore.lambdas.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Ben Fagin
@@ -126,5 +123,59 @@ public class _Collections {
 		}
 
 		return null;
+	}
+
+	public static <_Key, _Value> _Value find(
+		Map<_Key, _Value> map,
+		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
+	){
+		Map<_Key, _Value> iMap = Collections.unmodifiableMap(map);
+
+		for (Map.Entry<_Key, _Value> entry : iMap.entrySet()) {
+			Boolean result = iterator.invoke(entry.getValue(), entry.getKey(), iMap);
+
+			if (result != null && result) {
+				return entry.getValue();
+			}
+		}
+
+		return null;
+	}
+
+	public static <_Element> List<_Element> filter(
+		List<_Element> list,
+		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
+	){
+		List<_Element> iList = Collections.unmodifiableList(list);
+		List<_Element> retval = new ArrayList<_Element>();
+
+		for (int i=0; i < list.size(); ++i) {
+			_Element elem = list.get(i);
+			Boolean result = iterator.invoke(elem, i, iList);
+
+			if (result != null && result) {
+				retval.add(elem);
+			}
+		}
+
+		return retval;
+	}
+
+	public static <_Key, _Value> Map<_Key, _Value> filter(
+		Map<_Key, _Value> map,
+		ValueClosure3<Boolean, _Value, _Key, Map<_Key, _Value>> iterator
+	){
+		Map<_Key, _Value> iMap = Collections.unmodifiableMap(map);
+		Map<_Key, _Value> retval = new HashMap<_Key, _Value>();
+
+		for (Map.Entry<_Key, _Value> entry : map.entrySet()) {
+			Boolean result = iterator.invoke(entry.getValue(), entry.getKey(), iMap);
+
+			if (result != null && result) {
+				retval.put(entry.getKey(), entry.getValue());
+			}
+		}
+
+		return retval;
 	}
 }
