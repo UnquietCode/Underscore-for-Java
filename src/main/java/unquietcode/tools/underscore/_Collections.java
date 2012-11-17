@@ -94,4 +94,19 @@ public class _Collections {
 
 		return memo;
 	}
+
+	public static <_Input, _Output> _Output reduceRight(
+		List<_Input> list,
+		ValueClosure4<_Output, _Output, _Input, Integer, List<_Input>> iterator,
+		_Output memo
+	){
+		List<_Input> iList = Collections.unmodifiableList(list);
+
+		for (int i=list.size()-1; i >= 0; --i) {
+			_Input elem = list.get(i);
+			memo = iterator.invoke(memo, elem, i, iList);
+		}
+
+		return memo;
+	}
 }

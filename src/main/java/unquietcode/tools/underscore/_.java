@@ -123,6 +123,22 @@ public class _ {
 		return reduce(map, iterator, memo);
 	}
 
+	public static <_Input, _Output> _Output reduceRight(
+		List<_Input> list,
+		ValueClosure4<_Output, _Output, _Input, Integer, List<_Input>> iterator,
+		_Output memo
+	){
+		return _Collections.reduceRight(list, iterator, memo);
+	}
+
+	public static <_Input, _Output> _Output foldr(
+		List<_Input> list,
+		ValueClosure4<_Output, _Output, _Input, Integer, List<_Input>> iterator,
+		_Output memo
+	){
+		return reduceRight(list, iterator, memo);
+	}
+
 	//==o==o==o==o==o==o==| Iterators |==o==o==o==o==o==o==//
 
 	/**

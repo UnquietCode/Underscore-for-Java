@@ -112,4 +112,17 @@ public class EachTest {
 
 		System.out.println(sum);
 	}
+
+	@Test
+	public void listReduceRight() {
+		List<String> list = Arrays.asList("a", "b", "c");
+
+		String string = _.foldr(list, new _.iterators.withValue.memoized.forList<String, String>() {
+			public String invoke(String memo, String elem, Integer index, List<String> list) {
+				return memo + elem;
+			}
+		}, "");
+
+		System.out.println(string);
+	}
 }
