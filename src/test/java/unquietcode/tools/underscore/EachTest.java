@@ -125,4 +125,16 @@ public class EachTest {
 
 		System.out.println(string);
 	}
+
+	@Test
+	public void listFind() {
+		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
+		Integer even = _.find(list, new _Iterators.listFilter<Integer>() {
+			public Boolean invoke(Integer elem, Integer index, List<Integer> list) {
+				return elem % 2 == 0;
+			}
+		});
+
+		System.out.println(even);
+	}
 }

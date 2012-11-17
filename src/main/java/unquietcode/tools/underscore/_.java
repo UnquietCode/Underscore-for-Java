@@ -140,6 +140,18 @@ public class _ {
 	}
 
 	//==o==o==o==o==o==o==| find |==o==o==o==o==o==o==//
-	// alias detect
 
+	public static <_Element> _Element find(
+		List<_Element> list,
+		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
+	){
+		return _Collections.find(list, iterator);
+	}
+
+	public static <_Element> _Element detect(
+		List<_Element> list,
+		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
+	){
+		return find(list, iterator);
+	}
 }

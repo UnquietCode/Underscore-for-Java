@@ -109,4 +109,22 @@ public class _Collections {
 
 		return memo;
 	}
+
+	public static <_Element> _Element find(
+		List<_Element> list,
+		ValueClosure3<Boolean, _Element, Integer, List<_Element>> iterator
+	){
+		List<_Element> iList = Collections.unmodifiableList(list);
+
+		for (int i=0; i < list.size(); ++i) {
+			_Element elem = list.get(i);
+			Boolean result = iterator.invoke(elem, i, iList);
+
+			if (result != null && result) {
+				return elem;
+			}
+		}
+
+		return null;
+	}
 }
