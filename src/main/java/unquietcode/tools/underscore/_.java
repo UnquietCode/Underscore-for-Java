@@ -139,37 +139,7 @@ public class _ {
 		return reduceRight(list, iterator, memo);
 	}
 
-	//==o==o==o==o==o==o==| Iterators |==o==o==o==o==o==o==//
+	//==o==o==o==o==o==o==| find |==o==o==o==o==o==o==//
+	// alias detect
 
-	/**
-	 * Semantic wrappers for the various closures used by the Underscore methods.
-	 */
-	public static class iterators {
-
-		public interface forList<_Element> extends SimpleClosure3<_Element, Integer, List<_Element>> {
-			@Override void invoke(_Element element, Integer index, List<_Element> list);
-		}
-
-		public static class withValue {
-
-			public interface forList<_Output, _Element> extends ValueClosure3<_Output, _Element, Integer, List<_Element>> {
-				@Override _Output invoke(_Element element, Integer index, List<_Element> list);
-			}
-
-			public interface forMap<_Output, _Key, _Value> extends ValueClosure3<_Output, _Value, _Key, Map<_Key, _Value>> {
-				@Override _Output invoke(_Value value, _Key key, Map<_Key, _Value> map);
-			}
-
-			public static class memoized {
-				public interface forList<_Output, _Element> extends ValueClosure4<_Output, _Output, _Element, Integer, List<_Element>> {
-					@Override _Output invoke(_Output memo, _Element element, Integer index, List<_Element> list);
-				}
-
-				public interface forMap<_Output, _Key, _Value> extends ValueClosure4<_Output, _Output, _Value, _Key, Map<_Key, _Value>> {
-					@Override _Output invoke(_Output memo, _Value value, _Key key, Map<_Key, _Value> map);
-				}
-			}
-		}
-
-	}
 }

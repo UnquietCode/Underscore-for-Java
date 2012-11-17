@@ -49,13 +49,13 @@ public class EachTest {
 		List<Integer> list = Arrays.asList(1, 2, 3);
 		List<String> transformed;
 
-		transformed = _.map(list, new _.iterators.withValue.forList<String, Integer>() {
+		transformed = _.map(list, new _Iterators.withValue.forList<String, Integer>() {
 			public String invoke(Integer integer, Integer index, List<Integer> list) {
 				return "'"+integer.toString()+"'";
 			}
 		});
 
-		_.each(transformed, new _.iterators.forList<String>() {
+		_.each(transformed, new _Iterators.forList<String>() {
 			public void invoke(String element, Integer index, List<String> list) {
 				System.out.println(element);
 			}
@@ -77,7 +77,7 @@ public class EachTest {
 			}
 		});
 
-		_.each(transformed, new _.iterators.forList<String>() {
+		_.each(transformed, new _Iterators.forList<String>() {
 			public void invoke(String element, Integer index, List<String> list) {
 				System.out.println(element);
 			}
@@ -88,7 +88,7 @@ public class EachTest {
 	public void listReduce() {
 		List<Integer> list = Arrays.asList(1, 2, 3);
 
-		int sum = _.reduce(list, new _.iterators.withValue.memoized.forList<Integer, Integer>() {
+		int sum = _.reduce(list, new _Iterators.withValue.memoized.forList<Integer, Integer>() {
 			public Integer invoke(Integer memo, Integer value, Integer index, List<Integer> list) {
 				return memo + value;
 			}
@@ -104,7 +104,7 @@ public class EachTest {
 		map.put("two", 2);
 		map.put("three", 3);
 
-		int sum = _.reduce(map, new _.iterators.withValue.memoized.forMap<Integer, String, Integer>() {
+		int sum = _.reduce(map, new _Iterators.withValue.memoized.forMap<Integer, String, Integer>() {
 			public Integer invoke(Integer memo, Integer value, String key, Map<String, Integer> map) {
 				return memo + value;
 			}
@@ -117,7 +117,7 @@ public class EachTest {
 	public void listReduceRight() {
 		List<String> list = Arrays.asList("a", "b", "c");
 
-		String string = _.foldr(list, new _.iterators.withValue.memoized.forList<String, String>() {
+		String string = _.foldr(list, new _Iterators.withValue.memoized.forList<String, String>() {
 			public String invoke(String memo, String elem, Integer index, List<String> list) {
 				return memo + elem;
 			}
