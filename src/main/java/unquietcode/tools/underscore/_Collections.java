@@ -287,5 +287,29 @@ public class _Collections {
 
 		return false;
 	}
+
+	// -------------------------
+	// TODO need tests for anything below
+	// -------------------------
+
+	public static <_Element> boolean contains(Collection<_Element> collection, _Element value) {
+		return collection.contains(value);
+	}
+
+	// TODO 'invoke' is useful or not?
+
+	public static <_Key, _Value> List<_Value> pluck(_Key property, Map<_Key, _Value>...maps) {
+		return pluck(Arrays.asList(maps), property);
+	}
+
+	public static <_Key, _Value> List<_Value> pluck(List<Map<_Key, _Value>> maps, _Key property) {
+		List<_Value> retval = new ArrayList<_Value>();
+
+		for (Map<_Key, _Value> map : maps) {
+			retval.add(map.get(property));
+		}
+
+		return retval;
+	}
 }
 

@@ -14,16 +14,15 @@ import java.util.Map;
  * @version 11-16-2012
  */
 public class EachTest {
-	// TODO bring in the assertion stream from logmachine
-	// TODO turn these into Groovy tests, muuuuch easier to create collections
+	// TODO bring in the AssertionStream from logmachine
+	// TODO turn these into Groovy tests for clarity
 
-	// always use the basic closures, but offer the other ones as 'semantic wrappers'
 
 	@Test
 	public void listEach() {
 		List<Integer> list = Arrays.asList(1, 2, 3);
 
-		_.each(list, new SimpleClosure3<Integer, Integer, List<Integer>>() {
+		_.each(list, new _Iterators.forList<Integer>() {
 			public void invoke(Integer elem, Integer index, List<Integer> list) {
 				System.out.println(elem);
 			}
@@ -37,7 +36,7 @@ public class EachTest {
 		map.put("two", 2);
 		map.put("three", 3);
 
-		_.each(map, new SimpleClosure3<Integer, String, Map<String, Integer>>() {
+		_.each(map, new _Iterators.forMap<String, Integer>() {
 			public void invoke(Integer value, String key, Map<String, Integer> map) {
 				System.out.println(value);
 			}
@@ -71,7 +70,7 @@ public class EachTest {
 
 		List<String> transformed;
 
-		transformed = _.map(map, new ValueClosure3<String, Integer, String, Map<String, Integer>>() {
+		transformed = _.map(map, new _Iterators.withValue.forMap<String, String, Integer>() {
 			public String invoke(Integer value, String key, Map<String, Integer> map) {
 				return key + " : " + value;
 			}
